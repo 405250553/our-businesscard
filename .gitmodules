@@ -1,9 +1,10 @@
-[submodule "buildroot"]
-	path = buildroot
-	url = git://git.busybox.net/buildroot
 [submodule "uboot"]
 	path = uboot
 	url = https://github.com/405250553/u-boot
 [submodule "linux"]
 	path = linux
 	url = git@github.com:405250553/linux.git
+[submodule "buildroot"]
+	path = buildroot
+	url = git@github.com:405250553/buildroot.git
+	branch = 2019.05.x
