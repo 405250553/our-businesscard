@@ -6,14 +6,16 @@ CONFIG_SPL=y
 CONFIG_MACH_SUNIV=y
 CONFIG_DRAM_CLK=156
 CONFIG_DRAM_ZQ=0
-# CONFIG_VIDEO_SUNXI is not set
+CONFIG_VIDEO_LCD_MODE="x:800,y:480,depth:18,pclk_khz:33000,le:87,ri:40,up:31,lo:13,hs:1,vs:1,sync:3,vmode:0"
+CONFIG_VIDEO_LCD_BL_PWM="PE6"
 CONFIG_SPL_SPI_SUNXI=y
 # CONFIG_DISTRO_DEFAULTS is not set
 CONFIG_ENV_VARS_UBOOT_CONFIG=y
 # CONFIG_FIT is not set
-CONFIG_BOOTDELAY=0
+CONFIG_BOOTDELAY=3
 CONFIG_USE_BOOTCOMMAND=y
-CONFIG_BOOTCOMMAND="setenv bootargs console=ttyS0,115200 ubi.mtd=1 ubi.block=0,root ubi.block=0,flashdrive root=/dev/ubiblock0_2 g_acm_ms.removable=1; sf probe 0 20000000; ubi part rootubi; ubi read ${kernel_addr_r} kernel; ubi read ${fdt_addr_r} dtb; bootz ${kernel_addr_r} - ${fdt_addr_r}"
+CONFIG_BOOTCOMMAND="setenv bootargs console=tty0 console=ttyS0,115200 ubi.mtd=1 ubi.block=0,root ubi.block=0,flashdrive root=/dev/ubiblock0_2 g_acm_ms.removable=1; sf probe 0 20000000; ubi part rootubi; ubi read ${kernel_addr_r} kernel; ubi read ${fdt_addr_r} dtb; bootz ${kernel_addr_r} - ${fdt_addr_r}"
+# CONFIG_CONSOLE_MUX is not set
 CONFIG_LOG_MAX_LEVEL=6
 CONFIG_LOG_ERROR_RETURN=y
 CONFIG_SUPPORT_RAW_INITRD=y
@@ -35,7 +37,7 @@ CONFIG_CMD_BOOTZ=y
 CONFIG_CMD_SF=y
 CONFIG_CMD_MTDPARTS=y
 CONFIG_MTDIDS_DEFAULT="nor0=spi-flash"
-CONFIG_MTDPARTS_DEFAULT="mtdparts=spi-flash:256k(uboot),-(rootubi)"
+CONFIG_MTDPARTS_DEFAULT="mtdparts=spi-flash:512k(uboot),-(rootubi)"
 CONFIG_CMD_LOG=y
 CONFIG_CMD_UBI=y
 # CONFIG_CMD_UBIFS is not set
@@ -62,6 +64,7 @@ CONFIG_SPI=y
 CONFIG_DM_SPI=y
 CONFIG_SPI_SUNXI=y
 CONFIG_SYS_WHITE_ON_BLACK=y
+# CONFIG_VIDEO_DT_SIMPLEFB is not set
 CONFIG_HEXDUMP=y
 # CONFIG_OF_LIBFDT_OVERLAY is not set
 # CONFIG_EFI_LOADER is not set

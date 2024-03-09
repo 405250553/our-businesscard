@@ -1,0 +1,48 @@
+/*
+ * Copyright (C) 2018 Icenowy Zheng <icenowy@aosc.io>
+ *
+ * SPDX-License-Identifier: (GPL-2.0+ OR X11)
+ */
+
+#include "businesscard.dts"
+
+/ {
+	panel: panel {
+		compatible = "lg,lb070wv8", "simple-panel";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		enable-gpios = <&pio 4 6 GPIO_ACTIVE_HIGH>;
+
+		port@0 {
+			reg = <0>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			panel_input: endpoint@0 {
+				reg = <0>;
+				remote-endpoint = <&tcon0_out_lcd>;
+			};
+		};
+	};
+};
+
+&be0 {
+	status = "okay";
+};
+
+&de {
+	status = "okay";
+};
+
+&tcon0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&lcd_rgb666_pins>;
+	status = "okay";
+};
+
+&tcon0_out {
+	tcon0_out_lcd: endpoint@0 {
+		reg = <0>;
+		remote-endpoint = <&panel_input>;
+	};
+};
