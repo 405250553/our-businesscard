@@ -31,7 +31,7 @@ Change to the top-level Buildroot directory:
 
 Initialize the configuration, including the defconfig and this external directory:
 
-	make BR2_EXTERNAL=$PWD/../ thirtythreeforty_businesscard_defconfig
+	make BR2_EXTERNAL=$PWD/../ thirtythreeforty_businesscard_lcd_defconfig
 
 And compile:
 
@@ -49,6 +49,11 @@ Make sure the board is in FEL mode using `dmesg` or similar.
 You can erase the card after it boots by simply logging in (as `root`) and erasing the flash manually:
 
 	dd if=/dev/zero of=/dev/mtd0
+
+	[uboot]
+	sf probe 0 50000000 0
+	sf erase 0 0x1000000
+	reset
 
 Don't erase it unless you're prepared to burn a new image!
 
